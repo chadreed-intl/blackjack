@@ -6,10 +6,18 @@ class window.HandView extends Backbone.View
   template: _.template '<h2><% if(isDealer){ %>Dealer<% }else{ %>You<% } %> (<span class="score"></span>)</h2>'
 
   initialize: ->
-    #TODO: why doesn't 'add' trigger 'change'?
     @collection.on 'change', => @render()
     @collection.on 'add', => @render()
     @render()
+    @collection.on 'lose', => 
+      @$el.html '<div style="font-size:100px">BUST!</div>'
+      $('.stand-button').hide()
+      $('.hit-button').hide()
+    @collection.on 'BlackJack', => @$el.html '<div style="font-size:100px">BlackJack</div>'
+    @collection.on 'stand', => 
+      $('.stand-button').hide()
+      $('.hit-button').hide()
+
 
   render: ->
     @$el.children().detach
