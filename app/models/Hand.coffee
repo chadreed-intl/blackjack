@@ -8,8 +8,7 @@ class window.Hand extends Backbone.Collection
     @add(@deck.pop()).last()
     if @scores()[0] > 21
       @trigger 'lose'
-    if @scores()[0] == 21 and (@get 'player-Hand'.length == 2)
-      @trigger 'BlackJack'
+
 
   stand: -> @trigger 'stand' 
 
@@ -28,8 +27,8 @@ class window.Hand extends Backbone.Collection
       if temp > 21 
         [score]
       else
-        [temp] 
+        [temp]
     else
       [score]
-    #if hasAce then [score, score + 10] else [score]
+    # if hasAce then [score, score + 10] else [score]
 
